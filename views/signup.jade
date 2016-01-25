@@ -7,15 +7,17 @@ block content
       div.col-sm-6.col-md-4.col-md-offset-4
         div.panel.panel-default
           div.panel-heading.text-center
-            h2.fa.fa-sign-in Login
+            h2.fa.fa-sign-in Signup
           div.panel-body
-            form(class='form-signin', action='/login', method='POST')
+            form(class='form-signin', action='/signup', method='POST')
               if message.length > 0
                 .alert.alert-danger
                   .text-center.error-message #{message}
               div.form-group
                 input(type='email', name='email' class='form-control form-signin', placeholder='Email',required, autofocus)
                 input(type='password', name='password' class='form-control form-signin', placeholder='Password', required)
-              button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
+              button(class='btn btn-lg btn-primary btn-block', type='submit') Signup
               span.clearfix
-              a(href='/signup', class='text-center new-account') Create an account
+              a(href='/', class='text-center new-account') Already have an account?
+
+

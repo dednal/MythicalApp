@@ -1,0 +1,28 @@
+//
+   Created by dwhelan on 24/01/2016.
+
+extends layout
+
+block content
+  //-h1.text-center= title
+  div.container
+    div.row
+      div.col-sm-5.col-md-5
+        div.panel.panel-default
+          div.panel-heading.text-center
+            h2.fa.fa-sign-in Game
+          div.panel-body
+            #discard.well discard
+            #myhand.well myhand
+
+      div.col-sm-5.col-sm-offset-2.col-md-5.col-md-offset-2
+        div.panel.panel-default
+          div.panel-heading.text-center
+            h2.fa.fa-sign-in Chat
+          div.panel-body
+            #messages
+          div.panel-footer
+            div.input-group
+              input(type="text" class="form-control" id="chat-input")
+              span.input-group-btn
+                button.btn.btn-default#chat-send Send

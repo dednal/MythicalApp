@@ -1,0 +1,23 @@
+//
+   Created by dwhelan on 23/01/2016.
+
+extends layout
+
+block content
+  //h1.text-center= title
+  div.container
+    div.row
+      div.col-sm-10.col-md-8
+        div.panel.panel-default
+          div.panel-heading.text-center
+            h2.fa.fa-sign-in Hello #{user.local.email}
+          div.panel-body
+            h3
+              span.fa.fa-user  Local
+            p
+              |id: #{user._id}
+              br
+              |email: #{user.local.email}
+              br
+              | password: #{user.local.password}
+            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
