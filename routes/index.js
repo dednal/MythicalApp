@@ -6,33 +6,45 @@ module.exports = function(passport){
 
   /* GET home page. */
   router.get('/', function(req, res) {
-    res.render('index', { title: 'login page', message: req.flash('message') });
+    if(req.user){
+      res.redirect('/home');
+    } else {
+      res.render('index', {title: 'login page', message: req.flash('message')});
+    }
   });
 
-  //router.post('/login', passport.authenticate('login', {
-  //  successRedirect: '/home',
-  //  failureRedirect: '/',
-  //  failureFlash : true
-  //}));
+  router.post('/login', passport.authenticate('local-login', {
+    successRedirect: '/home',
+    failureRedirect: '/',
+    failureFlash : true
+  }));
 
   router.get('/signup', function(req, res) {
     res.render('signup', { message: req.flash('message') });
   });
 
-  //router.post('/signup', passport.authenticate('signup', {
-  //  successRedirect: '/home',
-  //  failureRedirect: '/signup',
-  //  failureFlash : true
-  //}));
+  router.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/home',
+    failureRedirect: '/signup',
+    failureFlash : true
+  }));
 
   router.get('/home', isLoggedIn, function(req, res) {
     res.render('home', {
-      user: req.user
+      user: req.user,
+      message: req.flash('message')
     });
   });
 
+  router.get('/game', isLoggedIn, function(req, res){
+    res.render('game', {
+      user : req.user
+    })
+  })
+
   router.get('/logout', function(req, res) {
     req.logout();
+    req.flash('message', "You are logged out");
     res.redirect('/');
   });
 
@@ -44,6 +56,7 @@ function isLoggedIn(req, res, next) {
     return next();
   }
 
+  req.flash('message', "You aren't logged in");
   res.redirect('/');
 };
 
